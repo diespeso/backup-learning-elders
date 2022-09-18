@@ -5,9 +5,14 @@ const app = express();
 dotenv.config();
 
 app.get('/', (req, res) => {
-    res.json({ message: 'ok' });
+    return res.redirect('index.html');
 });
 
-app.listen(process.env.PORT, '0.0.0.0', () => {
+
+app.use('/media', express.static(__dirname + '/media'));
+app.use(express.static(__dirname + '/public'));
+
+
+app.listen(process.env.PORT, `${process.env.HOST}`, () => {
     console.log('server up');
 });
