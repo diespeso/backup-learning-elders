@@ -5,7 +5,7 @@ const app = express();
 dotenv.config();
 
 app.get('/', (req, res) => {
-    return res.redirect('index.html');
+    return res.redirect('./public/index.html');
 });
 
 
