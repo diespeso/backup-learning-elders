@@ -2,18 +2,21 @@ const dotenv = require('dotenv');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const path = require('path');
 
 dotenv.config();
 
+app.use(express.static(path.join(__dirname, 'frontend', "build")));
 app.use('/media', express.static(__dirname + '/media'));
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
     extended: true,
 }));
+
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
-    return res.sendFile(__dirname + '/public' + 'index.html')
+    return res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 });
 
 app.post('/test_post', (req, res) => {
