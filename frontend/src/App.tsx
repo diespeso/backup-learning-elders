@@ -1,7 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.min.css';
+import MainLayout from './Layout/MainLayout';
 
+
+function App() {
+  return (
+    <div className="App">
+      <MainLayout>
+        
+      </MainLayout>
+    </div>
+  );
+}
+/*
 function App() {
   return (
     <div className="App">
@@ -21,6 +34,6 @@ function App() {
       </header>
     </div>
   );
-}
+}*/
 
 export default App;
