@@ -3,13 +3,14 @@ import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.min.css';
 import MainLayout from './Layout/MainLayout';
-
+import Leccion from './Components/lecciones/Leccion';
+import Leccion1 from './Containers/lecciones/Leccion1';
 
 function App() {
   return (
     <div className="App">
       <MainLayout>
-        
+        <Leccion1 />
       </MainLayout>
     </div>
   );
