@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 // router 
-app.post('/pre-evaluacion', require('./controllers/postEvaluationPre'))
+app.post('/evaluacion-pre', require('./controllers/postEvaluationPre'))
 
 app.listen(process.env.PORT, `${process.env.HOST}`, () => {
     console.log('server up');
