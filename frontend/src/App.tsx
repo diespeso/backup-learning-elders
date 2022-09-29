@@ -1,16 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.min.css';
 import MainLayout from './Layout/MainLayout';
-import Leccion from './Components/lecciones/Leccion';
-import Leccion1 from './Containers/lecciones/Leccion1';
+
+import { Leccion1, Leccion2, Leccion3, Leccion4 } from './Containers/lecciones/index'
+import Evaluacion from './Components/evaluacion/Evaluacion';
+import EvaluacionPre from './Containers/evaluaciones/EvaluacionPre';
+
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <MainLayout>
-        <Leccion1 />
+        <Routes>
+          <Route path="/evaluacion-pre" element={<EvaluacionPre/>}></Route>
+          <Route path="/leccion-1" element={<Leccion1/>}/>
+          <Route path="/leccion-2" element={<Leccion2/>}/>
+          <Route path="/leccion-3" element={<Leccion3/>}/>
+          <Route path="/leccion-4" element={<Leccion4/>}/>
+          <Route path="/evaluacion-post" element={<Evaluacion title="Eval post"><p>testpost</p></Evaluacion>}></Route>
+        </Routes>
       </MainLayout>
     </div>
   );

@@ -19,10 +19,8 @@ app.get('/', (req, res) => {
     return res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 });
 
-app.post('/test_post', (req, res) => {
-    console.log(req.body);
-    res.send("ok");
-});
+// router 
+app.post('/pre-evaluation', require('./controllers/postEvaluationPre'))
 
 app.listen(process.env.PORT, `${process.env.HOST}`, () => {
     console.log('server up');
