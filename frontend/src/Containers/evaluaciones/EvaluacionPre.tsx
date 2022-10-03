@@ -17,6 +17,14 @@ const questionOneOptions = [
     { text: 'optionBText', value: 'optionBValue' },
 ]
 
+const questionTwoOptions = [
+    { text: 'chooseA', value: 'A' },
+    { text: 'chooseB', value: 'B' },
+    { text: 'chooseC', value: 'C' },
+    { text: 'chooseD', value: 'D' },
+]
+
+
 const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
     const onFinish = async (values: any) => {
@@ -38,11 +46,17 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
                     label="Test Field"
                     name="test-field"
                 >
-                    <br></br>
+
                     <MultipleOptionQuestion options={questionOneOptions}>
                         <h3>Esta es una pregunta de prueba?</h3>
                         <ImageCard src="logo192.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
+
+                    <MultipleOptionQuestion options={questionTwoOptions}>
+                        <h3>Otra pregunta de prueba?</h3>
+                        <ImageCard src="logo192.png" text="Alguna Imagen"/>
+                    </MultipleOptionQuestion>
+
                     <Form.Item>
                         <Radio.Group onChange={(value) => {console.log('value here', value.target.value)}}>
                             <Radio value="testOne">Elige A</Radio>
