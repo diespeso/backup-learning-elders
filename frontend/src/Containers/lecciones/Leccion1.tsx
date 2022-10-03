@@ -7,7 +7,7 @@ import { Subtitle, Paragraph } from "../../Components/lecciones/lib";
 
 const Leccion1: React.FunctionComponent<{}> = () => {
     return (<div>
-        <Leccion title="Titulo Leccion">
+        <Leccion title="Título Lección">
             <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -16,7 +16,7 @@ const Leccion1: React.FunctionComponent<{}> = () => {
                 Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.</Paragraph>
             <br/>
-            <Subtitle>Subtitulo</Subtitle>
+            <Subtitle>Subtítulo</Subtitle>
             <ImageCard src="logo192.png" text="Imagen Importante"/>
         </Leccion>
     </div>)

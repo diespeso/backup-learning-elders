@@ -14,11 +14,16 @@ const DashboardLayout = styled(Layout)`
   min-height: 100vh;
 `
 
+const StyledSider = styled(Sider)`
+  background-color: #02928E;
+  border-radius: 0px 0px 10px;
+`
+
 const MainLayout: React.FunctionComponent<CommonLayoutProps> = ({ children }) => {
     return (<DashboardLayout>
-      <Sider width={220}>
+      <StyledSider width={360} >
         <Menu />
-      </Sider>
+      </StyledSider>
       <Layout>
         {children}
       </Layout>

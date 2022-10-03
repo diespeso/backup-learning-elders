@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
 export const LeccionTitle = styled.h1`
-    background-color: #ffbbaa;
+    background-color: #2EAB8F;
     text-align: left;
-    padding-left: 10px;
-    font-size: 2em;
+    padding-left: 30px;
+    font-size: 2.5em;
+    border-radius: 0px 0px 5px 5px;
 `
 
 export const LeccionOuterContainer = styled.div`
@@ -19,7 +20,7 @@ export const LeccionContainer = styled.div`
 
 export const Subtitle = styled.h3`
     padding-left: 10px;
-    color: darkblue;
+    color: #ff729f;
     text-align: left;
 `
 
