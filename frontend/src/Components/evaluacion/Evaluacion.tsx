@@ -1,8 +1,9 @@
 import React from "react";
 
 import {LeccionOuterContainer, LeccionContainer } from '../lecciones/lib';
+import { EvaluacionOuterContainer } from "./lib";
 
-import { EvaluacionTitle } from './lib'
+import { EvaluacionTitle, EvaluacionContainer } from './lib'
 
 type Props = {
     title: string,
@@ -12,12 +13,12 @@ type Props = {
 const Evaluacion: React.FunctionComponent<Props> = ({ title, children }) => {
     return (
         <div>
-            <LeccionOuterContainer>
+            <EvaluacionOuterContainer>
                 <EvaluacionTitle>{title}</EvaluacionTitle>
-                <LeccionContainer>
+                <EvaluacionContainer>
                     {children}
-                </LeccionContainer>
-            </LeccionOuterContainer>
+                </EvaluacionContainer>
+            </EvaluacionOuterContainer>
         </div>
     )
 }

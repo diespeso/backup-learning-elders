@@ -34,10 +34,7 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
                 initialValues={{ remember: true}}
                 onFinish={onFinish}
             >
-                <PaddedFormItem
-                    label="Test Field"
-                    name="test-field"
-                >
+                <PaddedFormItem wrapperCol={{ span: 7, offset: 4 }} >
                     <br></br>
                     <MultipleOptionQuestion options={questionOneOptions}>
                         <h3>Esta es una pregunta de prueba?</h3>
