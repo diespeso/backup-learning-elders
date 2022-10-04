@@ -23,6 +23,7 @@ export const QuestionOuterContainer = styled.div`
     width: 230%;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-bottom: 20px;
     box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.05);
 `
 
