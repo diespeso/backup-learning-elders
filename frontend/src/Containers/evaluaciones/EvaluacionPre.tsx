@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Input, Radio } from 'antd';
+import { Button, Form, Radio } from 'antd';
 import styled from "styled-components";
 
 import Evaluacion from "../../Components/evaluacion/Evaluacion";
@@ -7,6 +7,9 @@ import { MultipleOptionQuestion } from "../../Components/evaluacion/lib";
 import ImageCard from "../../Components/lecciones/ImageCard";
 
 import { evaluacion_pre, postData } from "../../endpoints";
+
+import { RootState, setRespuesta } from "../../Stores/store";
+import { useSelector, useDispatch } from "react-redux";
 
 const PaddedFormItem = styled(Form.Item)`
     padding-top: 20px;
@@ -27,10 +30,34 @@ const questionTwoOptions = [
 
 const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
-    const onFinish = async (values: any) => {
-        console.log('values: ', values);
-        const data = await postData(evaluacion_pre, { inner: 'testjsondata', values })
+    const respuestaUno = useSelector((state: RootState) => state.evalPre.respuestaUno)
+    const value = useSelector((state: RootState) => state.evalPre.value)
+    const respuestas = useSelector((state: RootState) => state.evalPre.respuestas)
+
+    const dispatch = useDispatch();
+
+    console.log('respuestas es', respuestaUno);
+    console.log('value is', value);
+    console.log('arrayr respuestas is', respuestas);
+
+    const onSubmit = async (values: any) => {
+        console.log('values: ', respuestas);
+        const data = await postData(evaluacion_pre, { inner: 'testjsondata', respuestas })
         console.log('resp: ', data)
+    }
+
+    const handleQ1 = async (e: any) => {
+        dispatch(setRespuesta({
+            pregunta: 'Pregunta Numero Uno',
+            respuesta: e.target.value,
+        }))
+    }
+
+    const handleQ2 = async (e: any) => {
+        dispatch(setRespuesta({
+            pregunta: 'Pregunta Numero Dos',
+            respuesta: e.target.value,
+        }))
     }
 
     return (
@@ -40,27 +67,19 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
                 labelCol={{ span: 2 }}
                 wrapperCol={{ span: 9 }}
                 initialValues={{ remember: true}}
-                onFinish={onFinish}
+                onFinish={onSubmit}
             >
                 <PaddedFormItem wrapperCol={{ span: 7, offset: 4 }} >
                     <br></br>
-                    <MultipleOptionQuestion options={questionOneOptions}>
+                    <MultipleOptionQuestion options={questionOneOptions} onChange={handleQ1}>
                         <h3>Esta es una pregunta de prueba?</h3>
                         <ImageCard src="logo192.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
 
-                    <MultipleOptionQuestion options={questionTwoOptions}>
+                    <MultipleOptionQuestion options={questionTwoOptions} onChange={handleQ2}>
                         <h3>Otra pregunta de prueba?</h3>
                         <ImageCard src="logo192.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
-
-                    <Form.Item>
-                        <Radio.Group onChange={(value) => {console.log('value here', value.target.value)}}>
-                            <Radio value="testOne">Elige A</Radio>
-                            <Radio value="testTwo">Elige B</Radio>
-                        </Radio.Group>
-                    </Form.Item>
-
                 </PaddedFormItem>
                 <Form.Item wrapperCol={{ offset: 8, span: 4 }}>
                     <Button type="primary" htmlType="submit">
