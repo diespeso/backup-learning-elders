@@ -11,6 +11,8 @@ import { evaluacion_pre, postData } from "../../endpoints";
 import { RootState, setRespuesta } from "../../Stores/store";
 import { useSelector, useDispatch } from "react-redux";
 
+import { useNavigate, redirect } from 'react-router-dom'
+
 const PaddedFormItem = styled(Form.Item)`
     padding-top: 20px;
 `
@@ -33,6 +35,7 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
     const respuestaUno = useSelector((state: RootState) => state.evalPre.respuestaUno)
     const value = useSelector((state: RootState) => state.evalPre.value)
     const respuestas = useSelector((state: RootState) => state.evalPre.respuestas)
+    const navigate = useNavigate()
 
     const dispatch = useDispatch();
 
@@ -42,7 +45,9 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
     const onSubmit = async (values: any) => {
         console.log('values: ', respuestas);
+        navigate('/leccion-1')
         const data = await postData(evaluacion_pre, { inner: 'testjsondata', respuestas })
+    
         console.log('resp: ', data)
     }
 

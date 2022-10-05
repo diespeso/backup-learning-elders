@@ -6,13 +6,13 @@ import { Leccion1, Leccion2, Leccion3, Leccion4 } from './Containers/lecciones/i
 import Evaluacion from './Components/evaluacion/Evaluacion';
 import EvaluacionPre from './Containers/evaluaciones/EvaluacionPre';
 
-import { Routes, Route } from 'react-router-dom';
-
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import { store } from './Stores/store';
 
 function App() {
+  
   return (
     <Provider store={store}>
       <div className="App">
