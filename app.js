@@ -31,6 +31,10 @@ app.get('/', (req, res) => {
 // router 
 app.post('/evaluacion-pre', require('./controllers/postEvaluationPre'))
 
+app.post('/currentPageCookie', require('./controllers/postCurrentPageCoockie'))
+
+app.get('/currentPageCookie', require('./controllers/getCurrentPageCoockie'))
+
 app.listen(process.env.PORT, `${process.env.HOST}`, () => {
     console.log('server up');
 });

@@ -27,6 +27,7 @@ export const Subtitle = styled.h3`
 export const Paragraph = styled.p`
     padding-left: 10px;
     text-align: left;
+    font-size: 1.3em;
 `
 
 export const ImageText = styled.h2`
@@ -37,7 +38,8 @@ export const ImageText = styled.h2`
 `
 
 export const ImageCardContainer = styled.div`
-    background-color: #22aaff;
+    background-color: #ADD8E6;
     width: 60%;
-    margin: 0 auto;
+    display:block;
+    margin: auto;
 `

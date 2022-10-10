@@ -25,15 +25,12 @@ const coockieGetPreTestDone = (req, res) => {
  */
 const coockieTrySetUser = (req, res) => {
     const currentId = req.cookies[USER_ID]
-    console.log('cur', currentId)
     if (!currentId) {
-        console.log('entered')
         res.cookie(USER_ID, uuid(), defaultOptions)
     }
 }
 
 const coockieGetUser = (req, res) => {
-    console.log(JSON.stringify(req.cookies))
     return req.cookies[USER_ID]
 }
 
@@ -44,6 +41,13 @@ const setGetCurrentPageCoockie = (req, res) => {
         currentPage,
         defaultOptions
     )
+    res.send({
+        currentPage,
+    })
+}
+
+const getCurrentPageCoockie = (req, res) => {
+    return req.cookies[CURRENT_PAGE]
 }
 
 module.exports = {
@@ -52,4 +56,5 @@ module.exports = {
     coockieTrySetUser,
     coockieGetUser,
     setGetCurrentPageCoockie,
+    getCurrentPageCoockie,
 }

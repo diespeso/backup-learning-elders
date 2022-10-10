@@ -5,7 +5,16 @@ import Leccion from "../../Components/lecciones/Leccion";
 
 import { Subtitle, Paragraph } from "../../Components/lecciones/lib";
 
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+
+import { postCurrentPage } from '../../endpoints'
+
 const Leccion1: React.FunctionComponent<{}> = () => {
+
+    useEffect(() => {
+        const res = postCurrentPage('leccion-1')
+    }, [])
     return (<div>
         <Leccion title="Título Lección">
             <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -17,7 +26,7 @@ const Leccion1: React.FunctionComponent<{}> = () => {
                 sunt in culpa qui officia deserunt mollit anim id est laborum.</Paragraph>
             <br/>
             <Subtitle>Subtítulo</Subtitle>
-            <ImageCard src="logo192.png" text="Imagen Importante"/>
+            <ImageCard src="logo512.png" text="Imagen Importante"/>
         </Leccion>
     </div>)
 }

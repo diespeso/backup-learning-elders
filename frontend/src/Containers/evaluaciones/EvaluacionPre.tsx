@@ -45,7 +45,6 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
     const onSubmit = async (values: any) => {
         console.log('values: ', respuestas);
-        navigate('/leccion-1')
         const data = await postData(evaluacion_pre, { inner: 'testjsondata', respuestas })
     
         console.log('resp: ', data)
@@ -78,12 +77,12 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
                     <br></br>
                     <MultipleOptionQuestion options={questionOneOptions} onChange={handleQ1}>
                         <h3>Esta es una pregunta de prueba?</h3>
-                        <ImageCard src="logo192.png" text="Alguna Imagen"/>
+                        <ImageCard src="logo512.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
 
                     <MultipleOptionQuestion options={questionTwoOptions} onChange={handleQ2}>
                         <h3>Otra pregunta de prueba?</h3>
-                        <ImageCard src="logo192.png" text="Alguna Imagen"/>
+                        <ImageCard src="logo512.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
                 </PaddedFormItem>
                 <Form.Item wrapperCol={{ offset: 8, span: 4 }}>

@@ -1,6 +1,13 @@
 import React from "react";
+import styled from "styled-components";
 
 import { ImageCardContainer, ImageText } from './lib'
+
+const StyledImage = styled.img`
+    width: 80%;
+    display: block;
+    margin: auto;
+`;
 
 type Props = {
     text: string,
@@ -10,7 +17,7 @@ type Props = {
 const ImageCard: React.FunctionComponent<Props> = ({text, src}) => {
     
     return (<ImageCardContainer>
-        <img src={src}/>
+        <StyledImage src={src}/>
         <ImageText>{text}</ImageText>
     </ImageCardContainer>)
 }

@@ -6,13 +6,25 @@ import { Leccion1, Leccion2, Leccion3, Leccion4 } from './Containers/lecciones/i
 import Evaluacion from './Components/evaluacion/Evaluacion';
 import EvaluacionPre from './Containers/evaluaciones/EvaluacionPre';
 
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
 import { store } from './Stores/store';
+import { useEffect } from 'react';
+
+import { getCurrentPageCoockie } from './endpoints'
 
 function App() {
-  
+  const navigate = useNavigate()
+  useEffect(() => {
+    console.log('entered main use effect')
+    getCurrentPageCoockie()
+      .then(response => {
+        if (response) {
+          navigate(`/${response.currentPage}`)
+        }
+      })
+  }, [])
   return (
     <Provider store={store}>
       <div className="App">
