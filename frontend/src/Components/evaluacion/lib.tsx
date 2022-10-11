@@ -31,6 +31,7 @@ type Props = {
     options: { text: string, value: any }[],
     children?: React.ReactNode,
     onChange?: any, // arrowfunction for onchange handling, dont know the typing
+    value?: any,
 }
 
 export const MultipleOptionQuestion: React.FunctionComponent<Props> = (props: Props) => {
@@ -38,7 +39,7 @@ export const MultipleOptionQuestion: React.FunctionComponent<Props> = (props: Pr
     return (
         <QuestionOuterContainer>
             {props.children}
-            <Radio.Group onChange={props.onChange}>
+            <Radio.Group onChange={props.onChange} value={props.value}>
                 {
                     props.options.map((option, i) => (
                         <Radio value={option.value} key={i}>

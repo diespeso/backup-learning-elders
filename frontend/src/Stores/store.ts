@@ -33,7 +33,7 @@ const EvalPreSlice = createSlice({
                 const index = state.respuestas.findIndex((respuestaObj) => respuestaObj.pregunta === pregunta)
                 state.respuestas[index].respuesta = respuesta;
             }
-        },
+        }
     }
 })
 

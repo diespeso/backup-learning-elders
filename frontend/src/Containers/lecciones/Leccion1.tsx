@@ -16,7 +16,7 @@ const Leccion1: React.FunctionComponent<{}> = () => {
         const res = postCurrentPage('leccion-1')
     }, [])
     return (<div>
-        <Leccion title="Título Lección">
+        <Leccion title="Leccionando">
             <Paragraph>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
