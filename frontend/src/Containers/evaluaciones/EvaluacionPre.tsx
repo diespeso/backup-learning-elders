@@ -12,6 +12,49 @@ import { evaluacion_pre, evaluacion_results, postData, getData } from "../../end
 
 import { RootState, setRespuesta } from "../../Stores/store";
 
+type Eleccion = { type: string, text: string};
+
+class EvaluationGeneric {
+    constructor() {}
+}
+
+class EvaluationBuilder {
+    preguntas: string[]
+    respuestas: Eleccion[]
+    flagDisclosedFlux: boolean // must add pregunta and then respuestas or else will fail
+
+    constructor() {
+        this.preguntas = [];
+        this.respuestas = [];
+        this.flagDisclosedFlux = true;
+    }
+
+    addPregunta = (pregunta: string) => {
+        if (!this.flagDisclosedFlux) {
+            throw new Error('tried to add pregunta when the last pregunta wasnt disclosed');
+        }
+        this.preguntas.push(pregunta);
+        return this;
+    }
+
+    setElecciones = (elecciones: Eleccion[]) => {
+        if(this.flagDisclosedFlux) {
+            throw new Error('tried to add eleccion when the last pregunta is already been disclosed');
+        }
+        elecciones.forEach((eleccion) => this.respuestas.push(eleccion));
+    }
+
+    disclose = () => {
+        this.flagDisclosedFlux = true;
+    }
+}
+
+const builder = new EvaluationBuilder();
+builder.addPregunta('Funciona esto?');
+builder.setElecciones([
+    {text: 'string'}
+]);
+
 const PaddedFormItem = styled(Form.Item)`
     padding-top: 20px;
 `
@@ -28,10 +71,16 @@ const questionTwoOptions = [
     { text: 'chooseD', value: 'D' },
 ]
 
+const questionThreeOptions = [
+    { text: 'primero', value: '1' },
+    { text: 'segundo', value: '2' },
+];
+
 const preguntas = [
     'nopregunta,id',
     'Esta es una pregunta de prueba?',
     'Otra pregunta de prueba, la segunda?',
+    'tercera pregunta',
 ]
 
 
@@ -87,6 +136,14 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
         }))
     }
 
+    const handleQ3 = async (e: any) => {
+        setRespuestasSeleccionadas({ ...respuestasSeleccionadas, [preguntas[3]]: e.target.value })
+        dispatch(setRespuesta({
+            pregunta: preguntas[3],
+            respuesta: e.target.value,
+        }))
+    }
+
     //test
     console.log(respuestasSeleccionadas[preguntas[1]]);
 
@@ -109,6 +166,10 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
                     <MultipleOptionQuestion options={questionTwoOptions} onChange={handleQ2} value={respuestasSeleccionadas[preguntas[2]]}>
                         <h3>{preguntas[1]}</h3>
                         <ImageCard src="logo512.png" text="Alguna Imagen"/>
+                    </MultipleOptionQuestion>
+
+                    <MultipleOptionQuestion options={questionThreeOptions} onChange={handleQ3} value= {respuestasSeleccionadas[preguntas[3]]}>
+
                     </MultipleOptionQuestion>
                 </PaddedFormItem>
                 <Form.Item wrapperCol={{ offset: 8, span: 4 }}>
