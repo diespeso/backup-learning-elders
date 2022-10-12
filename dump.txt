@@ -1,2 +1,1 @@
-75fe330c-2449-4d14-8b11-8480c4613aea,optionAValue,D
-752405c1-c033-409a-85a8-d041727dfbfe,optionBValue,D
+c3f019b6-e70b-403f-9db3-5bbdce7d0121,optionAValue,dos,50

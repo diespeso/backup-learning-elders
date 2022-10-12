@@ -55,13 +55,13 @@ const readLine = async (userId, filename) => {
  * @param {*} evaluationFields sequence of fields to rename the indexes from the evaluationArray
  */
 const lineToEvaluation = async (evaluationArray, evaluationFields) => {
-    if (evaluationArray.length !== evaluationFields.length) {
-        console.log(evaluationArray, evaluationFields);
+    if (evaluationArray.length - 1 !== evaluationFields.length) {
+        console.log(evaluationArray.slice(1), evaluationFields);
         throw new Error('evaluationarray and evaluationfields lengths differ');
     }
     const evaluationObject = {};
     evaluationFields.forEach((fieldName, i) => {
-        evaluationObject[fieldName] = evaluationArray[i];
+        evaluationObject[fieldName] = evaluationArray.slice(1)[i];
     });
     return evaluationObject;
 };

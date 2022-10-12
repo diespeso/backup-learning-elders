@@ -27,6 +27,9 @@ export const QuestionOuterContainer = styled.div`
     box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.05);
 `
 
+export const PlainTextQuestion = styled.h3`
+    font-size: 4em;
+`
 type Props = {
     options: { text: string, value: any }[],
     children?: React.ReactNode,
