@@ -30,6 +30,11 @@ export const QuestionOuterContainer = styled.div`
 export const PlainTextQuestion = styled.h3`
     font-size: 4em;
 `
+/*
+export const RadioBinaryTrue = styled(Radio)`
+    background-color: #ff0000;
+`
+*/
 type Props = {
     options: { text: string, value: any }[],
     children?: React.ReactNode,
@@ -50,6 +55,50 @@ export const MultipleOptionQuestion: React.FunctionComponent<Props> = (props: Pr
                         </Radio>
                     ))
                 }
+            </Radio.Group>
+        </QuestionOuterContainer>
+    )
+}
+
+type BQProps = {
+    trueOption: string,
+    falseOption: string
+    children?: React.ReactNode,
+    onChange?: any, // arrowfunction for onchange handling, dont know the typing
+}
+
+type RBProps = {
+    value: boolean,
+    text: string,
+    onchange?: any,
+}
+
+const RadioStyledTrue = styled(Radio)`
+    background-color: #00ff00;
+`
+
+const RadioStyledFalse = styled(Radio)`
+    background-color: #ff0000;
+`
+
+export const RadioBinary: React.FunctionComponent<RBProps> = (props: RBProps) => {
+    if (props.value) {
+        return (<RadioStyledTrue value={props.value}>
+            {props.text}
+        </RadioStyledTrue>)
+    }
+    return (<RadioStyledFalse value={props.value}>
+        {props.text}
+    </RadioStyledFalse>)
+}
+
+export const BinaryOptionQuestion: React.FunctionComponent<Props> = (props: Props) => { //bad props type
+    return (
+        <QuestionOuterContainer>
+            {props.children}
+            <Radio.Group onChange={props.onChange} value={props.value}>
+                <RadioBinary value={true} text="verdadero" />
+                <RadioBinary value={false} text="falso" />
             </Radio.Group>
         </QuestionOuterContainer>
     )

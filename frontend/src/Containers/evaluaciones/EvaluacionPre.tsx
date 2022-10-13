@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 
 import Evaluacion from "../../Components/evaluacion/Evaluacion";
-import { MultipleOptionQuestion, PlainTextQuestion } from "../../Components/evaluacion/lib";
+import { MultipleOptionQuestion, PlainTextQuestion, BinaryOptionQuestion } from "../../Components/evaluacion/lib";
 import ImageCard from "../../Components/lecciones/ImageCard";
 
 import { evaluacion_pre, evaluacion_results, postData, getData } from "../../endpoints";
@@ -32,13 +32,13 @@ class Evaluation{
         return this.contenido.map((cont) => cont!.pregunta)
     }
 
-    getHandlers(setterStateFunc: any, dispatchFunc: any): (setterRespuesta: any, initState: any, e: any) => void { //debi haber regresado un handler que solo tome e, en su lugar
-        // quizas sea mejor un builder
-        return (setterRespuesta, initState, e) => {
-            setterStateFunc({...initState, [this.getByIndex(0).pregunta]: e.target.value })
+    getHandlerByIndex(setterStateFunc: any, dispatchFunc: any, setterRespuesta: any, initState: any):
+    (index: any) => (e: any) => any {
+        return (index: number) => (e) => {
+            setterStateFunc({...initState, [this.getByIndex(index).pregunta]: e.target.value })
             dispatchFunc(
                 setterRespuesta({
-                    pregunta: this.getByIndex(0).pregunta,
+                    pregunta: this.getByIndex(index).pregunta,
                     respuesta: e.target.value
                 })
             )
@@ -133,11 +133,13 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
     const dispatch = useDispatch();
 
-    const handler = evaluation.getHandlers(
+    const masterHandler = evaluation.getHandlerByIndex(
         setRespuestasSeleccionadas,
         dispatch,
+        setRespuesta,
+        respuestasSeleccionadas,
     );
-    const handlerCalled = handler(setRespuesta, respuestasSeleccionadas, {});
+    
 
     useEffect(() => {
         const preguntasObj = {
@@ -194,20 +196,25 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
             >
                 <PaddedFormItem wrapperCol={{ span: 7, offset: 4 }} >
                     <br></br>
-                    <MultipleOptionQuestion options={evaluation.getByIndex(0).elecciones!} onChange={handleQ1} value={respuestasSeleccionadas[evaluation.getByIndex(0).pregunta]}>
+                    <MultipleOptionQuestion options={evaluation.getByIndex(0).elecciones!} onChange={masterHandler(0)} value={respuestasSeleccionadas[evaluation.getByIndex(0).pregunta]}>
                         <h3>{evaluation.getByIndex(0).pregunta}</h3>
                         <ImageCard src="logo512.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
 
-                    <MultipleOptionQuestion options={evaluation.getByIndex(1).elecciones!} onChange={handleQ2} value={respuestasSeleccionadas[evaluation.getByIndex(1).pregunta]}>
+                    <MultipleOptionQuestion options={evaluation.getByIndex(1).elecciones!} onChange={masterHandler(1)} value={respuestasSeleccionadas[evaluation.getByIndex(1).pregunta]}>
                         <h3>{evaluation.getByIndex(1).pregunta}</h3>
                         <ImageCard src="logo512.png" text="Alguna Imagen"/>
                     </MultipleOptionQuestion>
 
-                    <MultipleOptionQuestion options={evaluation.getByIndex(2).elecciones!} onChange={handleQ3} value= {respuestasSeleccionadas[evaluation.getByIndex(2).pregunta]}>
+                    <MultipleOptionQuestion options={evaluation.getByIndex(2).elecciones!} onChange={masterHandler(2)} value= {respuestasSeleccionadas[evaluation.getByIndex(2).pregunta]}>
                         <PlainTextQuestion>{evaluation.getByIndex(2).pregunta}</PlainTextQuestion>
                     </MultipleOptionQuestion>
                 </PaddedFormItem>
+
+                <BinaryOptionQuestion>
+                    <PlainTextQuestion></PlainTextQuestion>
+                </BinaryOptionQuestion>
+
                 <Form.Item wrapperCol={{ offset: 8, span: 4 }}>
                     <Button type="primary" htmlType="submit">
                         Submit
