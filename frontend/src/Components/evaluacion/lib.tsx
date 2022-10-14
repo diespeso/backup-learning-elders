@@ -74,11 +74,15 @@ type RBProps = {
 }
 
 const RadioStyledTrue = styled(Radio)`
-    background-color: #00ff00;
+    background-color: #aaffaa;
+    border-radius: 5px 5px 5px;
+    padding: 3px;
 `
 
 const RadioStyledFalse = styled(Radio)`
-    background-color: #ff0000;
+    background-color: #ffaaaa;
+    border-radius: 5px 5px 5px;
+    padding: 3px;
 `
 
 export const RadioBinary: React.FunctionComponent<RBProps> = (props: RBProps) => {
@@ -92,7 +96,13 @@ export const RadioBinary: React.FunctionComponent<RBProps> = (props: RBProps) =>
     </RadioStyledFalse>)
 }
 
-export const BinaryOptionQuestion: React.FunctionComponent<Props> = (props: Props) => { //bad props type
+type BOQProps = {
+    children?: React.ReactNode,
+    onChange?: any,
+    value?: any,
+};
+
+export const BinaryOptionQuestion: React.FunctionComponent<BOQProps> = (props: BOQProps) => { //bad props type
     return (
         <QuestionOuterContainer>
             {props.children}

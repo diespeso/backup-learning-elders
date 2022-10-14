@@ -119,8 +119,14 @@ const evaluation = evaluationBuilder
             { value: '100', text: 'sie'},
         ])
         .disclosePregunta()
+    .addPregunta('es verdad esto?')
+        .setElecciones([
+            { value: true, text: 'verdadero' },
+            { value: false, text: 'falso'},
+        ])
+        .disclosePregunta()
     .build();
-console.log('this is builder', evaluation);
+    console.log('this is builder', evaluation);
 
 const PaddedFormItem = styled(Form.Item)`
     padding-top: 20px;
@@ -209,11 +215,12 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
                     <MultipleOptionQuestion options={evaluation.getByIndex(2).elecciones!} onChange={masterHandler(2)} value= {respuestasSeleccionadas[evaluation.getByIndex(2).pregunta]}>
                         <PlainTextQuestion>{evaluation.getByIndex(2).pregunta}</PlainTextQuestion>
                     </MultipleOptionQuestion>
+                    
+                    <BinaryOptionQuestion onChange={masterHandler(3)} value={!!respuestasSeleccionadas[evaluation.getByIndex(3).pregunta]}>
+                        <PlainTextQuestion>{evaluation.getByIndex(3).pregunta}</PlainTextQuestion>
+                    </BinaryOptionQuestion>
                 </PaddedFormItem>
 
-                <BinaryOptionQuestion>
-                    <PlainTextQuestion></PlainTextQuestion>
-                </BinaryOptionQuestion>
 
                 <Form.Item wrapperCol={{ offset: 8, span: 4 }}>
                     <Button type="primary" htmlType="submit">
