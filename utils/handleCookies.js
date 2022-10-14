@@ -2,7 +2,7 @@ const { v4: uuid} = require('uuid')
 
 const PRE_COOKIE_NAME = 'PRETESTDONE'
 const USER_ID = 'USERID'
-const COOKIE_AGE =  900000
+const COOKIE_AGE =  99999999999
 const CURRENT_PAGE = 'CURRENTPAGE'
 
 const defaultOptions = {
