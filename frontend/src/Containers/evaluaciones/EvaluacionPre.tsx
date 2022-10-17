@@ -80,7 +80,9 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
       preguntas: evaluation.getAllPreguntas(),
     };
     const res = getData(evaluacion_results.pre, preguntasObj);
+    console.log('sending: ', preguntasObj);
     res.then((response) => {
+      console.log('received: ', response.evaluationData);
       setRespuestasSeleccionadas(response.evaluationData ?? {});
     })
   }, []);
@@ -107,14 +109,14 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
         <PaddedFormItem wrapperCol={{ span: 9, offset: 2 }} >
           <br></br>
           <BinaryOptionQuestion
-            onChange={masterHandler(0)}
-            value={!!respuestasSeleccionadas[evaluation.getByIndex(0).pregunta]}
+            onChange={masterHandler(1)}
+            value={!!respuestasSeleccionadas[evaluation.getByIndex(1).pregunta]}
             texts={[
-              evaluation.getByIndex(0)?.elecciones?.[0].text!,
-              evaluation.getByIndex(0)?.elecciones?.[1].text!,
+              evaluation.getByIndex(1)?.elecciones?.[0].text!,
+              evaluation.getByIndex(1)?.elecciones?.[1].text!,
             ]}
           >
-            <h3>{evaluation.getByIndex(0).pregunta}</h3>
+            <h3>{evaluation.getByIndex(1).pregunta}</h3>
             <CenteredParagraph>
               <i>"Científicos continúan trabajando en una vacuna para el coronavirus. Se espera que llege a finales de este año."</i>
               <br />
@@ -125,14 +127,14 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
           </BinaryOptionQuestion>
 
           <BinaryOptionQuestion
-            onChange={masterHandler(1)}
-            value={!!respuestasSeleccionadas[evaluation.getByIndex(1).pregunta]}
+            onChange={masterHandler(2)}
+            value={!!respuestasSeleccionadas[evaluation.getByIndex(2).pregunta]}
             texts={[
-              evaluation.getByIndex(1)?.elecciones?.[0].text!,
-              evaluation.getByIndex(1)?.elecciones?.[1].text!,
+              evaluation.getByIndex(2)?.elecciones?.[0].text!,
+              evaluation.getByIndex(2)?.elecciones?.[1].text!,
             ]}
           >
-            <h3>{evaluation.getByIndex(1).pregunta}</h3>
+            <h3>{evaluation.getByIndex(2).pregunta}</h3>
             <CenteredParagraph>
               <i>
                 "Científicos encuentran la cura para el Covid 19: tómese una cucharada de miel con ibuprofeno molido en ayunas por 3 días."
@@ -145,25 +147,25 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
           </BinaryOptionQuestion>
 
           <MultipleOptionQuestion
-            options={evaluation.getByIndex(2).elecciones!}
-            onChange={masterHandler(2)}
-            value={respuestasSeleccionadas[evaluation.getByIndex(2).pregunta]}>
-            <PlainTextQuestion>{evaluation.getByIndex(2).pregunta}</PlainTextQuestion>
-          </MultipleOptionQuestion>
-
-          <MultipleOptionQuestion
-            onChange={masterHandler(3)}
-            value={respuestasSeleccionadas[evaluation.getByIndex(3).pregunta]}
             options={evaluation.getByIndex(3).elecciones!}
-          >
+            onChange={masterHandler(3)}
+            value={respuestasSeleccionadas[evaluation.getByIndex(3).pregunta]}>
             <PlainTextQuestion>{evaluation.getByIndex(3).pregunta}</PlainTextQuestion>
           </MultipleOptionQuestion>
+
           <MultipleOptionQuestion
             onChange={masterHandler(4)}
             value={respuestasSeleccionadas[evaluation.getByIndex(4).pregunta]}
             options={evaluation.getByIndex(4).elecciones!}
           >
             <PlainTextQuestion>{evaluation.getByIndex(4).pregunta}</PlainTextQuestion>
+          </MultipleOptionQuestion>
+          <MultipleOptionQuestion
+            onChange={masterHandler(5)}
+            value={respuestasSeleccionadas[evaluation.getByIndex(5).pregunta]}
+            options={evaluation.getByIndex(5).elecciones!}
+          >
+            <PlainTextQuestion>{evaluation.getByIndex(5).pregunta}</PlainTextQuestion>
           </MultipleOptionQuestion>
 
           <BinaryOptionQuestion

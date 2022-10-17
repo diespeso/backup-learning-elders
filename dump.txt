@@ -1,1 +1,5 @@
-b2faae4d-f6ac-4c49-abbd-3e85fb868dbf,true,Punto Rojo,Mensaje Whatsapp,Calidad Video,true
+0c8d41e0-dbd3-4705-aefe-5f6981ece214,true,false,Palomita Azul,Mensaje Whatsapp,true
+e0b14397-7a66-4b4a-b78c-4fb1a3d11ed4,true,false,Palomita Verde,Comentario Facebook,true
+c820db33-e4cb-415a-b164-93561999b41b,true,true,Palomita Azul,Mensaje Whatsapp,Persona Implicada,true
+36be97d1-67f8-4138-90b4-fc192149fb6a,true,true,Palomita Azul,Mensaje Whatsapp,Persona Implicada,true
+ebc94a7e-4cff-48f9-9bcf-f04dd9ffda01,true,true,Palomita Verde,Video TikTok,Persona Implicada,true

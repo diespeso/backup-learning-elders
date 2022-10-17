@@ -37,6 +37,8 @@ app.get('/currentPageCookie', require('./controllers/getCurrentPageCoockie'))
 
 app.get('/userEvaluation/pre', require('./controllers/getUserEvaluationPre'));
 
+app.get('/dump/pre', require('./controllers/getResultsPre'))
+//app.get('/dump/post', require('./controllers/getResultsPost'))
 app.listen(process.env.PORT, `${process.env.HOST}`, () => {
   console.log('server up');
 });
