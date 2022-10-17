@@ -10,14 +10,14 @@ dotenv.config();
 
 app.use(cookieParser())
 app.use((req, res, next) => {
-    coockieTrySetUser(req, res)
-    next()
+  coockieTrySetUser(req, res)
+  next()
 })
 app.use(express.static(path.join(__dirname, 'frontend', "build")));
 app.use('/media', express.static(__dirname + '/media'));
 // app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({
-    extended: true,
+  extended: true,
 }));
 
 app.use(bodyParser.json());
@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
 
 // router 
 app.post('/evaluacion-pre', require('./controllers/postEvaluationPre'))
-
+app.post('/evaluacion-post', require('./controllers/postEvaluationPost'))
 app.post('/currentPageCookie', require('./controllers/postCurrentPageCoockie'))
 
 app.get('/currentPageCookie', require('./controllers/getCurrentPageCoockie'))
@@ -38,5 +38,5 @@ app.get('/currentPageCookie', require('./controllers/getCurrentPageCoockie'))
 app.get('/userEvaluation/pre', require('./controllers/getUserEvaluationPre'));
 
 app.listen(process.env.PORT, `${process.env.HOST}`, () => {
-    console.log('server up');
+  console.log('server up');
 });
