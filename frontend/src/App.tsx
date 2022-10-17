@@ -5,7 +5,7 @@ import MainLayout from './Layout/MainLayout';
 import { Leccion1, Leccion2, Leccion3, Leccion4 } from './Containers/lecciones/index'
 import Evaluacion from './Components/evaluacion/Evaluacion';
 import EvaluacionPre from './Containers/evaluaciones/EvaluacionPre';
-
+import EvaluationPost from './Containers/evaluaciones/EvaluacionPost';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -35,7 +35,7 @@ function App() {
             <Route path="/leccion-2" element={<Leccion2/>}/>
             <Route path="/leccion-3" element={<Leccion3/>}/>
             <Route path="/leccion-4" element={<Leccion4/>}/>
-            <Route path="/evaluacion-post" element={<Evaluacion title="Eval post"><p>testpost</p></Evaluacion>}></Route>
+            <Route path="/evaluacion-post" element={<EvaluationPost/>}></Route>
           </Routes>
         </MainLayout>
       </div>

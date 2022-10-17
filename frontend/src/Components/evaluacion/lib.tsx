@@ -36,41 +36,41 @@ export const RadioBinaryTrue = styled(Radio)`
 `
 */
 type Props = {
-    options: { text: string, value: any }[],
-    children?: React.ReactNode,
-    onChange?: any, // arrowfunction for onchange handling, dont know the typing
-    value?: any,
+  options: { text: string, value: any }[],
+  children?: React.ReactNode,
+  onChange?: any, // arrowfunction for onchange handling, dont know the typing
+  value?: any,
 }
 
 export const MultipleOptionQuestion: React.FunctionComponent<Props> = (props: Props) => {
 
-    return (
-        <QuestionOuterContainer>
-            {props.children}
-            <Radio.Group onChange={props.onChange} value={props.value}>
-                {
-                    props.options.map((option, i) => (
-                        <Radio value={option.value} key={i}>
-                            {option.text}
-                        </Radio>
-                    ))
-                }
-            </Radio.Group>
-        </QuestionOuterContainer>
-    )
+  return (
+    <QuestionOuterContainer>
+      {props.children}
+      <Radio.Group onChange={props.onChange} value={props.value}>
+        {
+          props.options.map((option, i) => (
+            <Radio value={option.value} key={i}>
+              {option.text}
+            </Radio>
+          ))
+        }
+      </Radio.Group>
+    </QuestionOuterContainer>
+  )
 }
 
 type BQProps = {
-    trueOption: string,
-    falseOption: string
-    children?: React.ReactNode,
-    onChange?: any, // arrowfunction for onchange handling, dont know the typing
+  trueOption: string,
+  falseOption: string
+  children?: React.ReactNode,
+  onChange?: any, // arrowfunction for onchange handling, dont know the typing
 }
 
 type RBProps = {
-    value: boolean,
-    text: string,
-    onchange?: any,
+  value: boolean,
+  text: string,
+  onchange?: any,
 }
 
 const RadioStyledTrue = styled(Radio)`
@@ -86,30 +86,31 @@ const RadioStyledFalse = styled(Radio)`
 `
 
 export const RadioBinary: React.FunctionComponent<RBProps> = (props: RBProps) => {
-    if (props.value) {
-        return (<RadioStyledTrue value={props.value}>
-            {props.text}
-        </RadioStyledTrue>)
-    }
-    return (<RadioStyledFalse value={props.value}>
-        {props.text}
-    </RadioStyledFalse>)
+  if (props.value) {
+    return (<RadioStyledTrue value={props.value}>
+      {props.text}
+    </RadioStyledTrue>)
+  }
+  return (<RadioStyledFalse value={props.value}>
+    {props.text}
+  </RadioStyledFalse>)
 }
 
 type BOQProps = {
-    children?: React.ReactNode,
-    onChange?: any,
-    value?: any,
+  children?: React.ReactNode,
+  onChange?: any,
+  value?: any,
+  texts?: [string, string],
 };
 
 export const BinaryOptionQuestion: React.FunctionComponent<BOQProps> = (props: BOQProps) => { //bad props type
-    return (
-        <QuestionOuterContainer>
-            {props.children}
-            <Radio.Group onChange={props.onChange} value={props.value}>
-                <RadioBinary value={true} text="verdadero" />
-                <RadioBinary value={false} text="falso" />
-            </Radio.Group>
-        </QuestionOuterContainer>
-    )
+  return (
+    <QuestionOuterContainer>
+      {props.children}
+      <Radio.Group onChange={props.onChange} value={props.value}>
+        <RadioBinary value={true} text={props.texts?.[0] ?? "verdadero"} />
+        <RadioBinary value={false} text={props.texts?.[1] ?? "falso"} />
+      </Radio.Group>
+    </QuestionOuterContainer>
+  )
 }

@@ -30,6 +30,10 @@ export const Paragraph = styled.p`
     font-size: 1.3em;
 `
 
+export const CenteredParagraph = styled(Paragraph)`
+  text-align: center;
+`
+
 export const ImageText = styled.h2`
     text-align: left;
     background-color: whitesmoke;
