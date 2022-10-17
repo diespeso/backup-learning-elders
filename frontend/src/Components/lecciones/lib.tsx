@@ -43,7 +43,7 @@ export const ImageText = styled.h2`
 
 export const ImageCardContainer = styled.div`
     background-color: #ADD8E6;
-    width: 60%;
+    width: 98%;
     display:block;
     margin: auto;
 `

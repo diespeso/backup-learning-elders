@@ -21,8 +21,8 @@ export const EvaluacionContainer = styled.div`
 export const QuestionOuterContainer = styled.div`
     background-color: #eeeeee;
     width: 230%;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 2vh;
+    padding-bottom: 5vh;
     margin-bottom: 20px;
     box-shadow: 5px 5px 5px 5px rgb(0, 0, 0, 0.05);
 `

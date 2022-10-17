@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import Evaluacion from "../../Components/evaluacion/Evaluacion";
 import { MultipleOptionQuestion, PlainTextQuestion, BinaryOptionQuestion } from "../../Components/evaluacion/lib";
-import ImageCard from "../../Components/lecciones/ImageCard";
+import { ImageCard } from "../../Components/lecciones/ImageCard";
 
 import { evaluacion_post, evaluacion_results, postData, getData } from "../../endpoints";
 import { EvaluationBuilder, PaddedFormItem } from './lib';
