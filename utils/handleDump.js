@@ -12,7 +12,6 @@ const INDEXES = {
 };
 
 const writeLine = async (userId, respuestas, filename) => {
-  console.log('test', userId, respuestas, filename);
   let contenido = `${userId},`
   respuestas.forEach((respuestaObj, i) => {
     contenido += respuestaObj.respuesta
@@ -82,7 +81,14 @@ const lineToEvaluation = async (evaluationArray, evaluationFields) => {
   //}
   const evaluationObject = {};
   evaluationFields.forEach((fieldName, i) => {
-    evaluationObject[fieldName] = evaluationArray.slice(1)[i];
+    let element = evaluationArray.slice(1)[i];
+    if (element === 'true ') {
+      element = true;
+    }
+    if (element === 'false') {
+      element = false;
+    }
+    evaluationObject[fieldName] = element;
   });
   return evaluationObject;
 };

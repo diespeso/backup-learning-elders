@@ -6,6 +6,29 @@ export const PaddedFormItem = styled(Form.Item)`
 `
 
 export type Eleccion = { value: any, text: string };
+export type PreguntaState = string | number | boolean | undefined;
+export type PreguntaRespuesta = { pregunta: string, elecciones?: Eleccion[] };
+
+/**
+ * cleans the preguntas to be in their right place and to have the right defined
+ * values in case of binary questions (false defaults)
+ * @param preguntasState 
+ * @param evaluation 
+ */
+export const cleanRespuestas = (preguntasState: any, evaluation: Evaluation) => {
+  let buildOrdered: any = [];
+  const contenido = evaluation.getAllContenido();
+  contenido.forEach((preguntaRespuesta) => {
+    let obj = {
+      pregunta: preguntaRespuesta?.pregunta!,
+      respuesta: preguntasState[preguntaRespuesta?.pregunta!],
+       // [preguntaRespuesta?.pregunta!]: preguntasState[preguntaRespuesta?.pregunta!],
+    };
+    console.log('made obj', obj);
+    buildOrdered.push(obj);
+  });
+  return buildOrdered;
+}
 
 export class Evaluation {
   contenido: [{ pregunta: string, elecciones?: Eleccion[] }?]
@@ -22,13 +45,25 @@ export class Evaluation {
     return this.contenido.filter((cont) => cont?.pregunta === pregunta)[0]!
   }
 
+  getIntoInitialState(): {[key: string]: PreguntaState} {
+    const preguntas = this.getAllPreguntas();
+    let obj: {[key: string]: PreguntaState} = {};
+    preguntas.forEach((pregunta) => {
+      obj[pregunta] = false;
+    });
+    return obj;
+  }
+
   getAllPreguntas(): string[] {
     return this.contenido.map((cont) => cont!.pregunta)
   }
 
+  getAllContenido(): [PreguntaRespuesta?] {
+    return this.contenido!;
+  }
+
   getHandlerByIndex(setterStateFunc: any, dispatchFunc: any, setterRespuesta: any, initState: any):
     (index: any) => (e: any) => any {
-    console.log('state', initState);
     return (index: number) => (e) => {
       setterStateFunc({ ...initState, [this.getByIndex(index).pregunta]: e.target.value })
       dispatchFunc(
@@ -91,5 +126,4 @@ export class EvaluationBuilder {
     return new Evaluation(this.contenido);
   }
 }
-
 

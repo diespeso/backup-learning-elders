@@ -17,7 +17,6 @@ import { getCurrentPageCoockie } from './endpoints'
 function App() {
   const navigate = useNavigate()
   useEffect(() => {
-    console.log('entered main use effect')
     getCurrentPageCoockie()
       .then(response => {
         if (response) {

@@ -27,7 +27,6 @@ const evaluation = evaluationBuilder
   ])
   .disclosePregunta()
   .build();
-console.log('this is builder', evaluation);
 
 const EvaluationPostForm: React.FunctionComponent<{}> = () => {
   const respuestas = useSelector((state: RootState) => state.evalPost.respuestas)
@@ -44,7 +43,6 @@ const EvaluationPostForm: React.FunctionComponent<{}> = () => {
   );
 
   useEffect(() => {
-    console.log(respuestas);
     const preguntasObj = {
       preguntas: evaluation.getAllPreguntas(),
     };
@@ -55,7 +53,6 @@ const EvaluationPostForm: React.FunctionComponent<{}> = () => {
   });
 
   const onSubmit = async (values: any) => {
-    console.log('respuestas de post', respuestas);
     const data = await postData(evaluacion_post, { inner: 'testjsondata', respuestas });
 
   };
