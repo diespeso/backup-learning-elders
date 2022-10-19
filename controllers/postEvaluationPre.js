@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     //every time write into the .txt the answers in order
     const { respuestas } = req.body
     if (!coockieGetPreTestDone(req, res)) { // permitir guardar una sola vez
-        writeLine(coockieGetUser(req, res), respuestas, 'dump.txt')
+        await writeLine(coockieGetUser(req, res), respuestas, 'dump.txt')
         coockieSetPreTestDone(req, res)
     }
     res.json({response: `got ${respuestas[0].respuesta}`})

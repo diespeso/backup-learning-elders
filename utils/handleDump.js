@@ -5,6 +5,16 @@ const readline = require('readline');
 const DELIMITER = ',';
 const ID_INDEX = 0;
 
+const CSV_HEADERS = [
+  'ID',
+  'FAKE_01',
+  'FAKE_02',
+  'FUENTE_01',
+  'FUENTE_02',
+  'REALIDAD_01',
+  'REALIDAD_02',
+];
+
 const INDEXES = {
   ID: 0,
   ANS1: 1,
@@ -12,6 +22,30 @@ const INDEXES = {
 };
 
 const writeLine = async (userId, respuestas, filename) => {
+  const filePath = path.join(
+    __dirname,
+    '..',
+    filename,
+  );
+  /// try headers
+  const content = await fs.promises.readFile(filePath);
+  if (content.length === 0) {
+    //write headers
+    let headers = '';
+    CSV_HEADERS.forEach((header, i) => {
+      headers += header;
+      if (i !== CSV_HEADERS.length - 1) {
+        headers += ',';
+      }
+    });
+    headers += '\n'
+    await fs.promises.appendFile(
+      filePath,
+      headers,
+      () => {}
+    )
+  } 
+  //end try
   let contenido = `${userId},`
   respuestas.forEach((respuestaObj, i) => {
     contenido += respuestaObj.respuesta
@@ -20,19 +54,15 @@ const writeLine = async (userId, respuestas, filename) => {
     }
   })
   contenido += '\n'
-  await fs.appendFile(
-    path.join(
-      __dirname,
-      '..',
-      filename,
-    ),
+  await fs.promises.appendFile(
+    filePath,
     contenido,
     () => { }
   )
 }
 
 const readLine = async (userId, filename) => {
-  const lines = fs.readFileSync(path.join(
+  const lines = await fs.promises.readFile(path.join(  //NOTA, FIX, TODO, IMPORTANT AH: NUNCA USAR ESTO EN EL MUNDO REAL SI SE USA NODE(SYNC)
     __dirname,
     '..',
     filename,
@@ -63,7 +93,7 @@ const readDump = async (evaluationTypeName) => {
   } else {
     throw new Error('InvalidTypeName for readDump: must be either "pre" or "post"');
   }
-  const data = fs.readFileSync(fileName, 'utf-8');
+  const data = await fs.promises.readFileSync(fileName, 'utf-8');
   return data;
 }
 /**
@@ -74,15 +104,10 @@ const readDump = async (evaluationTypeName) => {
  * @param {*} evaluationFields sequence of fields to rename the indexes from the evaluationArray
  */
 const lineToEvaluation = async (evaluationArray, evaluationFields) => {
-  //if (evaluationArray.length - 1 !== evaluationFields.length) {
-  //  console.log('evaluationArray is: ', evaluationArray);
-  //  console.log('evaluationFields: ', evaluationFields);
-  //  throw new Error('evaluationarray and evaluationfields lengths differ');
-  //}
   const evaluationObject = {};
   evaluationFields.forEach((fieldName, i) => {
     let element = evaluationArray.slice(1)[i];
-    if (element === 'true ') {
+    if (element === 'true') {
       element = true;
     }
     if (element === 'false') {
