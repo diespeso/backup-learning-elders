@@ -1,0 +1,3 @@
+ID,FAKE_01,FAKE_02,FUENTE_01,FUENTE_02,REALIDAD_01,REALIDAD_02,FAKE_03,DESCONFIANZA_01,DESCONFIANZA_02,LIMITACION_01
+a197f490-8d1c-4144-88ea-8da8a00f42ef,true,false,Punto Rojo,Ninguna,Duracion Video,false,true,Retirar Consentimiento,Celulares No Regulados,Medios Subliminales
+7cb95a7d-24d4-4ebb-ab90-507ab2778515,false,true,Palomita Azul,Mensaje Whatsapp,Duracion Video,false,true,Retirar Consentimiento,Redes Sociales Gubernamentales,Vacunas Nanochips
