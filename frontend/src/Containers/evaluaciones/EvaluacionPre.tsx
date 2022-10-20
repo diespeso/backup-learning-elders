@@ -91,8 +91,6 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
   const onSubmit = async (values: any) => {
     const cleaned = cleanRespuestas(respuestasSeleccionadas, evaluation);
-    console.log('respuestas', respuestas);
-    console.log('cleaned', cleaned);
     const data = await postData(evaluacion_pre, { inner: 'testjsondata', respuestas:cleaned })
   }
 

@@ -1,2 +1,3 @@
 ID,FAKE_01,FAKE_02,FUENTE_01,FUENTE_02,REALIDAD_01,REALIDAD_02
-3aec0d6b-e5e6-423e-ba5b-e0c09e275c0b,true,true,Palomita Azul,Mensaje Whatsapp,Calidad Video,true
+2a0e81e3-49ff-4322-8af7-c5e531571c69,true,true,Palomita Azul,Video TikTok,Duracion Video,true
+755124ee-a9aa-44a3-ae97-ef22a7c66c9b,true,true,Palomita Azul,Ninguna,Calidad Video,true

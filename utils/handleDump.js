@@ -42,9 +42,9 @@ const writeLine = async (userId, respuestas, filename) => {
     await fs.promises.appendFile(
       filePath,
       headers,
-      () => {}
+      () => { }
     )
-  } 
+  }
   //end try
   let contenido = `${userId},`
   respuestas.forEach((respuestaObj, i) => {
@@ -62,11 +62,12 @@ const writeLine = async (userId, respuestas, filename) => {
 }
 
 const readLine = async (userId, filename) => {
-  const lines = await fs.promises.readFile(path.join(  //NOTA, FIX, TODO, IMPORTANT AH: NUNCA USAR ESTO EN EL MUNDO REAL SI SE USA NODE(SYNC)
+  const readLinesPromise = await fs.promises.readFile(path.join(  //NOTA, FIX, TODO, IMPORTANT AH: NUNCA USAR ESTO EN EL MUNDO REAL SI SE USA NODE(SYNC)
     __dirname,
     '..',
     filename,
-  )).toString().split('\n'); //READ ALL LINES
+  ))
+  const lines = readLinesPromise.toString().split('\n'); //READ ALL LINES
 
   const idLine = lines // READ THE USERS LINE
     .filter((line) => line.split(DELIMITER)[ID_INDEX] === userId)[0];
