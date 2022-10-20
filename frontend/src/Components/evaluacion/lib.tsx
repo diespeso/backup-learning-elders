@@ -114,3 +114,34 @@ export const BinaryOptionQuestion: React.FunctionComponent<BOQProps> = (props: B
     </QuestionOuterContainer>
   )
 }
+
+type MLProps = {
+  options: { text: string, value: any }[],
+  children?: React.ReactNode,
+  onChange?: any,
+  value?: any,
+};
+
+const OneLinerRadio = styled(Radio)`
+  display: block;
+  border-radius: 5px 5px 5px;
+  padding: 3px;
+  margin: 4px;
+`;
+
+export const MultiLineOptionQuestion: React.FunctionComponent<MLProps> = (props: MLProps) => {
+  return (
+    <QuestionOuterContainer>
+      {props.children}
+      <Radio.Group onChange={props.onChange} value={props.value}>
+        {
+          props.options.map((option, i) => (
+            <OneLinerRadio value={option.value} key={i}>
+              {option.text}
+            </OneLinerRadio>
+          ))
+        }
+      </Radio.Group>
+    </QuestionOuterContainer>
+  )
+}

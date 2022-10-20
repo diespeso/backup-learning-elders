@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Button, Form, Radio } from 'antd';
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-// TODO: BINARY QUESTIONS STILL FAIL 
 import Evaluacion from "../../Components/evaluacion/Evaluacion";
-import { MultipleOptionQuestion, PlainTextQuestion, BinaryOptionQuestion } from "../../Components/evaluacion/lib";
+import {
+  MultipleOptionQuestion,
+  PlainTextQuestion,
+  BinaryOptionQuestion,
+  MultiLineOptionQuestion,
+} from "../../Components/evaluacion/lib";
 import { ImageCard, DuoImageCard } from "../../Components/lecciones/ImageCard";
-
+// TODO: Crear un componente de opciones enumeradas
 import { evaluacion_pre, evaluacion_results, postData, getData } from "../../endpoints";
 import { EvaluationBuilder, PaddedFormItem, cleanRespuestas } from './lib';
 
@@ -15,11 +19,6 @@ import { CenteredParagraph, Paragraph } from '../../Components/lecciones/lib';
 
 const evaluationBuilder = new EvaluationBuilder();
 const evaluation = evaluationBuilder
-  /*.addPregunta('dummy')
-  .setElecciones([
-    { text: 'dummy', value: null },
-  ])
-  .disclosePregunta()*/
   .addPregunta('1. Es esta una noticia potencialmente falsa?')
   .setElecciones([
     { text: 'potencialmente verdadera', value: true },
@@ -62,6 +61,36 @@ const evaluation = evaluationBuilder
     { value: false, text: 'Derecha' },
   ])
   .disclosePregunta()
+  .addPregunta('7. Califique como verdadero o falso el siguiente enunciado:')
+  .setElecciones([
+    { value: true, text: 'Verdadero' },
+    { value: false, text: 'Falso' },
+  ])
+  .disclosePregunta()
+  .addPregunta('8. ¿Cuál de los siguientes no es un derecho que tienen los usuarios al brindar sus datos biométricos?')
+  .setElecciones([
+    { value: 'Retirar Consentimiento', text: 'A retirar consentimiento en cualquier momento' },
+    { value: 'Ser Notificado', text: 'A ser notificados sobre filtraciones en 72 hrs posteriores al suceso' },
+    { value: 'Ser Informado', text: 'A ser informados sobre el uso que se le dará a sus datos biométricos' },
+    { value: 'Conocer Algoritmos', text: 'A conocer los algoritmos utilizados para guardar, procesar y manipular sus datos biométricos' },
+  ])
+  .disclosePregunta()
+  .addPregunta('9. ¿Cuál de las siguientes afirmaciones es verdadera?')
+  .setElecciones([
+    { value: 'Celulares No Regulados', text: 'Los teléfonos celulares no están regulados y las empresas que los fabrican pueden ver tu información en cualquier momento' },
+    { value: 'Redes Sociales Gubernamentales', text: 'Las redes sociales son plataformas creadas por el gobierno, donde siempre se pública información confiable, como en los periódicos' },
+    { value: 'Redes Sociales Internet', text: 'Para usar redes sociales (Facebook, Whatsapp) en un celular se necesita estar conectado en una red de internet, como WiFi o datos móviles' },
+    { value: 'Radiación Celulares', text: 'La radiación emitida por los celulares puede ocasionar cáncer si se utilizan por mucho tiempo' },
+  ])
+  .disclosePregunta()
+  .addPregunta('10. ¿Cuál de los siguientes escenarios es posible en la actualidad?')
+  .setElecciones([
+    { value: 'Inteligencia Artificial Futuro', text: 'La inteligencia artificial puede predecir el futuro, con años de antelación y 100% de precisión' },
+    { value: 'Vacunas Nanochips', text: 'Las vacunas pueden inyectar nanochips para espiar a las masas' },
+    { value: 'Medios Subliminales', text: 'Los medios de comunicación contiene mensajes subliminales para controlar las ideas de las personas' },
+    { value: 'Inteligencia Artificial Apoyo', text: 'La inteligencia artificial puede ayudar a predecir ciertos sucesos en ciertos contextos con una precisión relativamente alta' },
+  ])
+  .disclosePregunta()
   .build();
 
 const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
@@ -91,7 +120,7 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
   const onSubmit = async (values: any) => {
     const cleaned = cleanRespuestas(respuestasSeleccionadas, evaluation);
-    const data = await postData(evaluacion_pre, { inner: 'testjsondata', respuestas:cleaned })
+    const data = await postData(evaluacion_pre, { inner: 'testjsondata', respuestas: cleaned })
   }
 
   return (
@@ -105,9 +134,10 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
       >
         <PaddedFormItem wrapperCol={{ span: 9, offset: 2 }} >
           <br></br>
+
           <BinaryOptionQuestion
             onChange={masterHandler(0)}
-            value={!!respuestasSeleccionadas[evaluation.getByIndex(0).pregunta]}
+            value={respuestasSeleccionadas[evaluation.getByIndex(0).pregunta]}
             texts={[
               evaluation.getByIndex(0)?.elecciones?.[0].text!,
               evaluation.getByIndex(0)?.elecciones?.[1].text!,
@@ -125,7 +155,7 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
 
           <BinaryOptionQuestion
             onChange={masterHandler(1)}
-            value={!!respuestasSeleccionadas[evaluation.getByIndex(1).pregunta]}
+            value={respuestasSeleccionadas[evaluation.getByIndex(1).pregunta]}
             texts={[
               evaluation.getByIndex(1)?.elecciones?.[0].text!,
               evaluation.getByIndex(1)?.elecciones?.[1].text!,
@@ -164,17 +194,62 @@ const EvaluacionPreForm: React.FunctionComponent<{}> = () => {
           >
             <PlainTextQuestion>{evaluation.getByIndex(4).pregunta}</PlainTextQuestion>
           </MultipleOptionQuestion>
+
           <BinaryOptionQuestion
             onChange={masterHandler(5)}
-            value={!!respuestasSeleccionadas[evaluation.getByIndex(5).pregunta]}
+            value={respuestasSeleccionadas[evaluation.getByIndex(5).pregunta]}
             texts={[
               evaluation.getByIndex(5)?.elecciones?.[0].text!,
               evaluation.getByIndex(5)?.elecciones?.[1].text!,
             ]}
           >
             <h3>{evaluation.getByIndex(5).pregunta}</h3>
-            <DuoImageCard  srcLeft= "FAKE_IMAGE_LEFT.PNG" srcRight="FAKE_IMAGE_RIGHT.PNG"/>
+            <DuoImageCard srcLeft="FAKE_IMAGE_LEFT.PNG" srcRight="FAKE_IMAGE_RIGHT.PNG" />
           </BinaryOptionQuestion>
+
+          <BinaryOptionQuestion
+            onChange={masterHandler(6)}
+            value={respuestasSeleccionadas[evaluation.getByIndex(6).pregunta]}
+            texts={[
+              evaluation.getByIndex(6)?.elecciones?.[0].text!,
+              evaluation.getByIndex(6)?.elecciones?.[1].text!,
+            ]}
+          >
+            <h3>{evaluation.getByIndex(6).pregunta}</h3>
+            <CenteredParagraph>
+              <i>
+                "Es imposible detener la propagación de noticias falsas porque no hay forma de distinguirlas de las noticias verdaderas"
+              </i>
+            </CenteredParagraph>
+          </BinaryOptionQuestion>
+
+          <MultiLineOptionQuestion
+            options={evaluation.getByIndex(7).elecciones!}
+            onChange={masterHandler(7)}
+            value={respuestasSeleccionadas[evaluation.getByIndex(7).pregunta]}
+          >
+            <PlainTextQuestion>
+              {evaluation.getByIndex(7).pregunta}
+            </PlainTextQuestion>
+          </MultiLineOptionQuestion>
+
+          <MultiLineOptionQuestion
+            onChange={masterHandler(8)}
+            value={respuestasSeleccionadas[evaluation.getByIndex(8).pregunta]}
+            options={evaluation.getByIndex(8).elecciones!}
+          >
+            <PlainTextQuestion>{evaluation.getByIndex(8).pregunta}</PlainTextQuestion>
+          </MultiLineOptionQuestion>
+
+          <MultiLineOptionQuestion
+            onChange={masterHandler(9)}
+            value={respuestasSeleccionadas[evaluation.getByIndex(9).pregunta]}
+            options={evaluation.getByIndex(9).elecciones!}
+          >
+            <PlainTextQuestion>
+              {evaluation.getByIndex(9).pregunta}
+            </PlainTextQuestion>
+          </MultiLineOptionQuestion>
         </PaddedFormItem>
 
 

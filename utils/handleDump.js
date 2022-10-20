@@ -13,6 +13,10 @@ const CSV_HEADERS = [
   'FUENTE_02',
   'REALIDAD_01',
   'REALIDAD_02',
+  'FAKE_03',
+  'DESCONFIANZA_01',
+  'DESCONFIANZA_02',
+  'LIMITACION_01',
 ];
 
 const INDEXES = {

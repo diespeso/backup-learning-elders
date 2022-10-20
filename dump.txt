@@ -1,3 +1,6 @@
 ID,FAKE_01,FAKE_02,FUENTE_01,FUENTE_02,REALIDAD_01,REALIDAD_02
-2a0e81e3-49ff-4322-8af7-c5e531571c69,true,true,Palomita Azul,Video TikTok,Duracion Video,true
-755124ee-a9aa-44a3-ae97-ef22a7c66c9b,true,true,Palomita Azul,Ninguna,Calidad Video,true
+94686899-b2ab-4eef-8db3-5a197161579e,false,true,Palomita Azul,Ninguna,Duracion Video,false,true,Ser Notificado,Redes Sociales Internet,Vacunas Nanochips
+ed2621af-0c75-4d0f-96c4-3368a5a55ffc,false,true,Punto Rojo,Mensaje Whatsapp,Duracion Video,false,true,Retirar Consentimiento,Celulares No Regulados,Vacunas Nanochips
+211e0cc4-d2b1-4eb4-8ad6-455cb03b6cac,true,true,Punto Rojo,Ninguna,Duracion Video,true,false,Retirar Consentimiento,Celulares No Regulados,Medios Subliminales
+11e3b6e9-62a4-4420-94d5-0369a0ff5307,true,false,Punto Rojo,Ninguna,Duracion Video,false,false,Retirar Consentimiento,Redes Sociales Internet,Vacunas Nanochips
+2afa84d0-d976-459c-92b9-e557f7d08456,false,true,Tacha Azul,Comentario Facebook,ParPadeo Ocular,true,true,Retirar Consentimiento,Celulares No Regulados,Inteligencia Artificial Futuro
