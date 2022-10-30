@@ -4,3 +4,5 @@ ed2621af-0c75-4d0f-96c4-3368a5a55ffc,false,true,Punto Rojo,Mensaje Whatsapp,Dura
 211e0cc4-d2b1-4eb4-8ad6-455cb03b6cac,true,true,Punto Rojo,Ninguna,Duracion Video,true,false,Retirar Consentimiento,Celulares No Regulados,Medios Subliminales
 11e3b6e9-62a4-4420-94d5-0369a0ff5307,true,false,Punto Rojo,Ninguna,Duracion Video,false,false,Retirar Consentimiento,Redes Sociales Internet,Vacunas Nanochips
 2afa84d0-d976-459c-92b9-e557f7d08456,false,true,Tacha Azul,Comentario Facebook,ParPadeo Ocular,true,true,Retirar Consentimiento,Celulares No Regulados,Inteligencia Artificial Futuro
+7cb95a7d-24d4-4ebb-ab90-507ab2778515,true,false,Palomita Azul,Video TikTok,Duracion Video,false,true,Ser Notificado,Redes Sociales Gubernamentales,Medios Subliminales
+7ffced30-bda6-40f7-a850-dd311b1cf1ee,true,false,Punto Rojo,Mensaje Whatsapp,Calidad Video,false,true,Conocer Algoritmos,Redes Sociales Internet,Inteligencia Artificial Apoyo
